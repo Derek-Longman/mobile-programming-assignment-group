@@ -5,7 +5,10 @@ plugins {
 
 android {
     namespace = "algonquin.cst2335.derekandroidfinalproject"
-    compileSdk = 33
+    compileSdk = 34
+    buildFeatures{
+        viewBinding = true
+    }
 
     defaultConfig {
         applicationId = "algonquin.cst2335.derekandroidfinalproject"
