@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import algonquin.cst2335.myapplication.R;
+
 public class recipeSearchActivity extends AppCompatActivity {
 
     @Override

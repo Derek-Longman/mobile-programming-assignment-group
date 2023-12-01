@@ -48,7 +48,13 @@ ActivityMainBinding binding;
 
                 break;
             case R.id.Help:
-                Toast.makeText(this, "Help",Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setTitle("Info of this page")
+                        .setMessage("This shows the song artist name and the song from that artist." +
+                                "Put a url of the artist you want in the searchbar and click on the button.")
+                        .create()
+                        .show();
+
                 break;
         }
 
