@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f0f4f3">
+
+    <!-- Banner with Background Color -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CST2335 Final Project
+        Section 013 - Group 2"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="20dp"
+        android:background="#6c9386"
+        android:textColor="#000000"/>
+
+        <!-- Button and TextView for App 1 with Box and Margin -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="25dp"
+            android:background="@drawable/custom_box"
+            android:padding="8dp">
+
+
+            <Button
+                android:id="@+id/sunriseButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Sunrise &amp; Sunset"
+                android:background="@drawable/custom_button"
+                android:onClick="launchApp1"/>
+
+            <TextView
+                android:id="@+id/sunriseText"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="Sunrise &amp; Sunset Lookup - Created by Robbie Stemberger." />
+        </LinearLayout>
+
+    <!-- Button and TextView for App 2 with Box and Margin -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="25dp"
+        android:background="@drawable/custom_box"
+        android:padding="8dp">
+
+            <Button
+                android:id="@+id/recipeButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Recipe Search"
+                android:background="@drawable/custom_button"
+                android:onClick="launchApp2"/>
+
+            <TextView
+                android:id="@+id/recipeText"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="Recipe Search - Created by Derek Longman." />
+    </LinearLayout>
+
+            <!-- Button and TextView for App 3 with Box and Margin -->
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="25dp"
+        android:background="@drawable/custom_box"
+        android:padding="8dp">
+
+            <Button
+                android:id="@+id/dictionaryButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Dictionary"
+                android:background="@drawable/custom_button"
+                android:onClick="launchApp3"/>
+
+            <TextView
+                android:id="@+id/dictionaryText"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="Dictionary API - Created by Peter Noonan." />
+        </LinearLayout>
+
+    <!-- Button and TextView for App 4 with Box and Margin -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:background="@drawable/custom_box"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/deezerButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="launchApp4"
+            android:text="Deezer" />
+
+        <TextView
+            android:id="@+id/deezerText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Deezer Song Search API - Created by Bruce Raynard." />
+    </LinearLayout>
+</LinearLayout>
