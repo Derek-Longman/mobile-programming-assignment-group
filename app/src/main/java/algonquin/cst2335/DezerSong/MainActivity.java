@@ -3,6 +3,7 @@ package algonquin.cst2335.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,30 +33,38 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import algonquin.cst2335.DezerSong.DetailsFragment;
+import algonquin.cst2335.DezerSong.ViewsModel;
 import algonquin.cst2335.derekandroidfinalproject.recipeSearchActivity;
 import algonquin.cst2335.myapplication.databinding.ActivityMainBinding;
 import algonquin.cst2335.myapplication.databinding.DeezerSongBinding;
 
 
+
 public class MainActivity extends AppCompatActivity {
     ArrayList<String> songs;
+
     private RecyclerView.Adapter myAdapter;
-ActivityMainBinding binding;
+    ActivityMainBinding binding;
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-         super.onCreateOptionsMenu(menu);
+        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menus, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-         super.onOptionsItemSelected(item);
-        switch( item.getItemId() )
-        {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
             case R.id.recipe:
-             startActivity(new Intent(this, recipeSearchActivity.class));
+                startActivity(new Intent(this, recipeSearchActivity.class));
+
+                break;
+            case R.id.sunrise:
+               //startActivity(new Intent(this, recipeSearchActivity.class));
 
                 break;
             case R.id.Help:
@@ -63,7 +72,8 @@ ActivityMainBinding binding;
                 alert.setTitle("Info of this page")
                         .setMessage("This shows the song artist name and the song from that artist." +
                                 "Put a url of the artist you want in the searchbar and click on the button.")
-                        .setPositiveButton("Close", (dialog, which) -> {})
+                        .setPositiveButton("Close", (dialog, which) -> {
+                        })
                         .create()
                         .show();
 
@@ -72,23 +82,34 @@ ActivityMainBinding binding;
 
         return true;
     }
+
     RequestQueue queue = null;
+    ViewsModel SongsModel = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding =ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         queue = Volley.newRequestQueue(this);
         setSupportActionBar(binding.toolbar);
+        SongsModel = new ViewModelProvider(this).get(ViewsModel.class);
         songs = new ArrayList<>();
+        if (SongsModel.songs.getValue() != null){
+            songs.addAll(SongsModel.songs.getValue());
+        }
+
         SharedPreferences prefs = getSharedPreferences("SongData", Context.MODE_PRIVATE);
         String search = prefs.getString("SongSearch", "");
         binding.editTextText.setText(search);
         SharedPreferences.Editor editor = prefs.edit();
+        SongsModel.selectedSong.observe(this, (song) -> {
+            DetailsFragment songFrag = new DetailsFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentLocation, songFrag).commit();
+        });
 
-
-binding.button.setOnClickListener(click ->{
-    String text = binding.editTextText.getText().toString();
+        binding.button.setOnClickListener(click -> {
+   String text = binding.editTextText.getText().toString();
 
     Toast.makeText(this,"Toast: "+ text,Toast.LENGTH_SHORT).show();
     editor.putString("SongSearch",text);
@@ -100,10 +121,19 @@ binding.button.setOnClickListener(click ->{
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, stringURL, null,
                 (response) -> {
                     try {
+                        songs.clear();
                         JSONArray songArray=response.getJSONArray("data");
-                        JSONObject song_obj = songArray.getJSONObject(0);
-                        String artist_name = song_obj.getString("name");
-                    songs.add(artist_name);
+                        //start
+                        for (int i = 0; i < songArray.length(); i++){
+                            JSONObject song_obj = songArray.getJSONObject(i);
+                            String artist_name = song_obj.getString("name");
+                             String tracklistURL = song_obj.getString("tracklist");
+
+                            songs.add(artist_name);
+                        }
+                        SongsModel.songs.postValue(songs);
+
+                        //end
                     myAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
@@ -117,7 +147,7 @@ binding.button.setOnClickListener(click ->{
         throw new RuntimeException(e);
     }
 
-});
+        });
 
         binding.RecyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.RecyclerView.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
@@ -140,10 +170,12 @@ binding.button.setOnClickListener(click ->{
                 return songs.size();
             }
         });
+
     }
 
     class MyRowHolder extends RecyclerView.ViewHolder {
         TextView songname;
+        //        RecyclerView recyclerView;
         int position;
 
         public MyRowHolder(@NonNull View itemView) {
@@ -151,7 +183,9 @@ binding.button.setOnClickListener(click ->{
             itemView.setOnClickListener(clk -> {
                 position = getAdapterPosition();
                 String selected = songs.get(position);
-               AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                SongsModel.selectedSong.postValue(selected);
+
+               /*AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setMessage("Do you want to delete the message " + songname.getText())
                 .setTitle("Question:")
                 .setPositiveButton("No", (dialog, cl) -> {
@@ -167,11 +201,15 @@ binding.button.setOnClickListener(click ->{
                             })
                             .show();
                 }))
-                .create().show();
+                .create().show();*/
+
 
             });
             songname = itemView.findViewById(R.id.songname);
 
         }
     }
+
+
+
 }

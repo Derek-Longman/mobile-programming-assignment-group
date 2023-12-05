@@ -4,14 +4,17 @@
 
     <item
         android:id="@+id/recipe"
+        android:icon="@drawable/icons8_recipe_96"
         android:title="@string/toolbar_recipe"
         app:showAsAction="always" />
     <item
         android:id="@+id/dictionary"
+        android:icon="@drawable/icons8_dictionary_96"
         android:title="@string/toolbar_dictionary"
         app:showAsAction="always" />
     <item
         android:id="@+id/sunrise"
+        android:icon="@drawable/icons8_sunrise_96"
         android:title="@string/toolbar_sunrise"
         app:showAsAction="always" />
     <item
