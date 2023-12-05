@@ -3,6 +3,8 @@ package algonquin.cst2335.derekandroidfinalproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +23,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,35 +44,43 @@ public boolean onCreateOptionsMenu(Menu menu){
     getMenuInflater().inflate(R.menu.menus,menu);
     return true;
 }
-Override
+@Override
 public boolean onOptionsItemSelected(@NonNull MenuItem item){
     super.onOptionsItemSelected(item);
     switch(item.getItemId()){
-        case R.id.recipe:
-            startActivity(new Intent(this, recipeSearchActivity.class));
-            break;
+//        case R.id.sunrise:
+//            //startActivity(new Intent(this, recipeSearchActivity.class));
+//            break;
+//        case R.id.dictionary:
+//            //startActivity(new Intent(this, recipeSearchActivity.class));
+//            break;
+//        case R.id.song:
+//            //startActivity(new Intent(this, recipeSearchActivity.class));
+//            break;
         case R.id.help:
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setTitle("Info about this page")
                     //.setMessage("")
                     //.setPositiveButton("Close",(dialog,which)-{})
-                    //.create()
-                    //.show;
+                    .create()
+                    .show();
             break;
-
-
-
     }
     return true;
 }
 RequestQueue queue =null;
+    ViewModel recipeModel = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         queue = Volley.newRequestQueue(this);
         setSupportActionBar(binding.toolbar);
+        recipeModel = new ViewModelProvider(this).get(ViewModel.class);
         recipies = new ArrayList<>();
+        if(recipeModel.recipies.getValue()!=null){
+            recipies.addAll(recipeModel.recipies.getValue());
+        }
         SharedPreferences preferences = getSharedPreferences("RecipeData", Context.MODE_PRIVATE);
         String search = preferences.getString("RecipeSearch","");
         binding.searchBar.setText(search);
@@ -83,14 +94,20 @@ RequestQueue queue =null;
             editor.apply();
 
             try {
-                String recipeName = URLEncoder.encode(search.getText().toString(), "UTF-8");
+                String recipeName = URLEncoder.encode(search.toString(), "UTF-8");
+                //String recipeName = URLEncoder.encode(search.getText().toString(), "UTF-8");
                 String stringURL ="https://api.spoonacular.com/recipes/complexSearch?query="+ recipeName +"&apiKey=d904a6e732664ed6ac143ccbe9e429db";
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,stringURL,null,
                         (response) -> {
                     try {
-                        JSONArray recipeArray=response.getJSONArray("");
-                        JSONObject recipe_obj = recipeArray.getJSONObject(0);
-                        String
+                        recipies.clear();
+                        JSONArray recipeArray=response.getJSONArray("results");
+                        for (int i =0; i< recipeArray.length();i++) {
+                            JSONObject recipe_obj = recipeArray.getJSONObject(0);
+                            String recipe_title = recipe_obj.getString("title");
+                            recipies.add(recipe_title);
+                        }
+                        recipeModel.recipies.postValue(recipies);
 
                     }catch (JSONException e){
                         throw new RuntimeException(e);
@@ -125,7 +142,7 @@ RequestQueue queue =null;
 
 
             @Override
-            public int getItemCount() {
+            public int getItemCount(){
                 return recipies.size();
             }
         });
@@ -138,25 +155,30 @@ RequestQueue queue =null;
 
         public MyRowHolder(@NonNull View itemView){
             super(itemView);
-            itemView.setOnClickListener(clk ->
-                    position = getAdapterPosition();
-                    String selected = recipies.get(position);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(recipeSearchActivity.this);
-                    builder.setMessage(""+recipename.getText())
-                    .setTitle("question:")
-                            .setPositiveButton("No",(dialog,cl)->{})
-                            .setNegativeButton("No",((dialog,cl)->{
+            itemView.setOnClickListener(clk -> {
+                position = getAdapterPosition();
+                String selected = recipies.get(position);
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(recipeSearchActivity.this);
+//                    builder.setMessage(""+recipename.getText())
+//                    .setTitle("question:")
+//                            .setPositiveButton("No",(dialog,cl)->{})
+//                            .setNegativeButton("Yes",((dialog,cl)->{
+//                                String r = recipies.get(position);
+//                                recipies.remove(position);
+//                                derekAdapter.notifyItemRemoved(position);
+//                                Snackbar.make(recipename,"you")
+//
+//
+//                            }))
 
-                            }))
 
-
-
-                    );
+            });
+            //recipename=itemView.findViewById(R.id.rec)
 
 
 
         }
 
 
-    };
+    }
 }
