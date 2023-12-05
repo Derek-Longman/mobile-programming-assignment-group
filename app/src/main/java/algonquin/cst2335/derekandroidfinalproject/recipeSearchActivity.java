@@ -1,15 +1,20 @@
 package algonquin.cst2335.derekandroidfinalproject;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -36,6 +41,27 @@ public boolean onCreateOptionsMenu(Menu menu){
     getMenuInflater().inflate(R.menu.menus,menu);
     return true;
 }
+Override
+public boolean onOptionsItemSelected(@NonNull MenuItem item){
+    super.onOptionsItemSelected(item);
+    switch(item.getItemId()){
+        case R.id.recipe:
+            startActivity(new Intent(this, recipeSearchActivity.class));
+            break;
+        case R.id.help:
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle("Info about this page")
+                    //.setMessage("")
+                    //.setPositiveButton("Close",(dialog,which)-{})
+                    //.create()
+                    //.show;
+            break;
+
+
+
+    }
+    return true;
+}
 RequestQueue queue =null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +84,7 @@ RequestQueue queue =null;
 
             try {
                 String recipeName = URLEncoder.encode(search.getText().toString(), "UTF-8");
-                String stringURL ="“https://api.spoonacular.com/recipes/complexSearch?query="+ recipeName +"&apiKey=YYYYY”";
+                String stringURL ="https://api.spoonacular.com/recipes/complexSearch?query="+ recipeName +"&apiKey=d904a6e732664ed6ac143ccbe9e429db";
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,stringURL,null,
                         (response) -> {
                     try {
@@ -84,12 +110,16 @@ RequestQueue queue =null;
             @NonNull
             @Override
             public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                ActivityRecipeSearchBinding binding = ActivityRecipeSearchBinding.inflate(getLayoutInflater());
 
                 return new MyRowHolder(binding.getRoot());
             }
 
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
+                holder.recipename.setText("");
+                String obj = recipies.get(position);
+                holder.recipename.setText(obj);
 
             }
 
@@ -103,6 +133,29 @@ RequestQueue queue =null;
     }
 
     class MyRowHolder extends RecyclerView.ViewHolder{
+        TextView recipename;
+        int position;
+
+        public MyRowHolder(@NonNull View itemView){
+            super(itemView);
+            itemView.setOnClickListener(clk ->
+                    position = getAdapterPosition();
+                    String selected = recipies.get(position);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(recipeSearchActivity.this);
+                    builder.setMessage(""+recipename.getText())
+                    .setTitle("question:")
+                            .setPositiveButton("No",(dialog,cl)->{})
+                            .setNegativeButton("No",((dialog,cl)->{
+
+                            }))
+
+
+
+                    );
+
+
+
+        }
 
 
     };
