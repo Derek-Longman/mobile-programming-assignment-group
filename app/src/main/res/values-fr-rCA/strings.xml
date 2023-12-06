@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Deezer Song</string>
+    <string name="app_name">Hanson Deezer</string>
     <string name="artist_text">Entrez l\'artiste</string>
     <string name="search">Recherche</string>
     <string name="toolbar_dictionary">dictionnaire</string>

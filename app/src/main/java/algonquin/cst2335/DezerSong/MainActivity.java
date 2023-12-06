@@ -40,21 +40,41 @@ import algonquin.cst2335.myapplication.databinding.ActivityMainBinding;
 import algonquin.cst2335.myapplication.databinding.DeezerSongBinding;
 
 
-
+/**
+ * The main activity class for the DeezerSong app.
+ */
 public class MainActivity extends AppCompatActivity {
+    /**
+     * List of songs retrieved from the Deezer API.
+     */
     ArrayList<String> songs;
-
+    /**
+     * RecyclerView adapter for displaying the list of songs.
+     */
     private RecyclerView.Adapter myAdapter;
+    /**
+     * Data binding for the main activity.
+     */
     ActivityMainBinding binding;
 
-
+    /**
+     * Creates the options menu in the activity.
+     *
+     * @param menu The options menu in which you place your items.
+     * @return Returns true for the menu to be displayed.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menus, menu);
         return true;
     }
-
+    /**
+     * Handles item selections in the options menu.
+     *
+     * @param item The selected menu item.
+     * @return Returns true to indicate that the event has been consumed.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
@@ -82,10 +102,20 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
-
+    /**
+     * Volley RequestQueue for handling API requests.
+     */
     RequestQueue queue = null;
+    /**
+     * ViewModel for managing the data related to songs.
+     */
     ViewsModel SongsModel = null;
-
+    /**
+     * Initializes the activity, including setting up the UI and handling saved preferences.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
+     * this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,12 +202,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+    /**
+     * Custom ViewHolder for the RecyclerView items.
+     */
     class MyRowHolder extends RecyclerView.ViewHolder {
         TextView songname;
         //        RecyclerView recyclerView;
         int position;
-
+        /**
+         * Constructs a new instance of MyRowHolder.
+         *
+         * @param itemView The view representing a single item in the RecyclerView.
+         */
         public MyRowHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(clk -> {
@@ -185,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                 String selected = songs.get(position);
                 SongsModel.selectedSong.postValue(selected);
 
-               /*AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+               AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setMessage("Do you want to delete the message " + songname.getText())
                 .setTitle("Question:")
                 .setPositiveButton("No", (dialog, cl) -> {
@@ -201,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
                             })
                             .show();
                 }))
-                .create().show();*/
+                .create().show();
 
 
             });
