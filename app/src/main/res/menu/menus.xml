@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/help"
+        android:title="help" />
+    <item
+        android:id="@+id/sunrise"
+        android:title="sunrise" />
+    <item android:title="Item" />
+    <item
+        android:id="@+id/dictionary"
+        android:title="dictionary" />
+    <item
+        android:id="@+id/song"
+        android:enabled="true"
+        android:title="song"
+        android:visible="true" />
+    <item
+        android:id="@+id/favorites"
+        android:title="favorites"
+        android:visible="true"
+        app:showAsAction="always" />
 </menu>

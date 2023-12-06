@@ -29,6 +29,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -48,19 +49,20 @@ public boolean onCreateOptionsMenu(Menu menu){
 public boolean onOptionsItemSelected(@NonNull MenuItem item){
     super.onOptionsItemSelected(item);
     switch(item.getItemId()){
-//        case R.id.sunrise:
-//            //startActivity(new Intent(this, recipeSearchActivity.class));
-//            break;
-//        case R.id.dictionary:
-//            //startActivity(new Intent(this, recipeSearchActivity.class));
-//            break;
-//        case R.id.song:
-//            //startActivity(new Intent(this, recipeSearchActivity.class));
-//            break;
+        case R.id.sunrise:
+            //startActivity(new Intent(this, recipeSearchActivity.class));
+            break;
+        case R.id.dictionary:
+            //startActivity(new Intent(this, recipeSearchActivity.class));
+            break;
+        case R.id.song:
+            //startActivity(new Intent(this, recipeSearchActivity.class));
+            break;
         case R.id.help:
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setTitle("Info about this page")
-                    //.setMessage("")
+                    .setMessage("this shows the recipie name and picture"+
+                     "it also allows you to save certain recipies")
                     //.setPositiveButton("Close",(dialog,which)-{})
                     .create()
                     .show();
@@ -85,6 +87,9 @@ RequestQueue queue =null;
         String search = preferences.getString("RecipeSearch","");
         binding.searchBar.setText(search);
         SharedPreferences.Editor editor = preferences.edit();
+        recipeModel.selectedRecipie.observe(this,(recipe)->{
+
+        });
 
         binding.searchButton.setOnClickListener(click ->{
             String text = binding.searchBar.getText().toString();
@@ -97,6 +102,8 @@ RequestQueue queue =null;
                 String recipeName = URLEncoder.encode(search.toString(), "UTF-8");
                 //String recipeName = URLEncoder.encode(search.getText().toString(), "UTF-8");
                 String stringURL ="https://api.spoonacular.com/recipes/complexSearch?query="+ recipeName +"&apiKey=d904a6e732664ed6ac143ccbe9e429db";
+
+
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,stringURL,null,
                         (response) -> {
                     try {
@@ -106,7 +113,10 @@ RequestQueue queue =null;
                             JSONObject recipe_obj = recipeArray.getJSONObject(0);
                             String recipe_title = recipe_obj.getString("title");
                             recipies.add(recipe_title);
+                            iconName = recipe_obj.getString("image");
+
                         }
+                        File imageFile = new File(iconName);
                         recipeModel.recipies.postValue(recipies);
 
                     }catch (JSONException e){
@@ -123,7 +133,9 @@ RequestQueue queue =null;
 
                 });
         binding.recipeList.setLayoutManager(new LinearLayoutManager(this));
-        binding.recipeList.setAdapter(derekAdapter = new RecyclerView.Adapter<MyRowHolder>() {
+        binding.recipeList.setAdapter(derekAdapter = new RecyclerView.Adapter<MyRowHolder>()
+
+        {
             @NonNull
             @Override
             public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -158,6 +170,7 @@ RequestQueue queue =null;
             itemView.setOnClickListener(clk -> {
                 position = getAdapterPosition();
                 String selected = recipies.get(position);
+                recipeModel.selected.recipies.postValue(Selected);
 //                    AlertDialog.Builder builder = new AlertDialog.Builder(recipeSearchActivity.this);
 //                    builder.setMessage(""+recipename.getText())
 //                    .setTitle("question:")
@@ -173,7 +186,7 @@ RequestQueue queue =null;
 
 
             });
-            //recipename=itemView.findViewById(R.id.rec)
+            //recipename=itemView.findViewById(R.id.recipename);
 
 
 
