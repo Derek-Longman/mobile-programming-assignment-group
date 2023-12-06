@@ -80,16 +80,16 @@ RequestQueue queue =null;
         setSupportActionBar(binding.toolbar);
         recipeModel = new ViewModelProvider(this).get(ViewModel.class);
         recipies = new ArrayList<>();
-        if(recipeModel.recipies.getValue()!=null){
-            recipies.addAll(recipeModel.recipies.getValue());
-        }
+//        if(recipeModel.recipies.getValue()!=null){
+//            recipies.addAll(recipeModel.recipies.getValue());
+//        }
         SharedPreferences preferences = getSharedPreferences("RecipeData", Context.MODE_PRIVATE);
         String search = preferences.getString("RecipeSearch","");
         binding.searchBar.setText(search);
         SharedPreferences.Editor editor = preferences.edit();
-        recipeModel.selectedRecipie.observe(this,(recipe)->{
-
-        });
+//        recipeModel.selectedRecipie.observe(this,(recipe)->{
+//
+//        });
 
         binding.searchButton.setOnClickListener(click ->{
             String text = binding.searchBar.getText().toString();
@@ -113,11 +113,11 @@ RequestQueue queue =null;
                             JSONObject recipe_obj = recipeArray.getJSONObject(0);
                             String recipe_title = recipe_obj.getString("title");
                             recipies.add(recipe_title);
-                            iconName = recipe_obj.getString("image");
+                            //iconName = recipe_obj.getString("image");
 
                         }
-                        File imageFile = new File(iconName);
-                        recipeModel.recipies.postValue(recipies);
+                        //File imageFile = new File(iconName);
+                        //recipeModel.recipies.postValue(recipies);
 
                     }catch (JSONException e){
                         throw new RuntimeException(e);
@@ -170,7 +170,7 @@ RequestQueue queue =null;
             itemView.setOnClickListener(clk -> {
                 position = getAdapterPosition();
                 String selected = recipies.get(position);
-                recipeModel.selected.recipies.postValue(Selected);
+                //recipeModel.selected.recipies.postValue(Selected);
 //                    AlertDialog.Builder builder = new AlertDialog.Builder(recipeSearchActivity.this);
 //                    builder.setMessage(""+recipename.getText())
 //                    .setTitle("question:")
