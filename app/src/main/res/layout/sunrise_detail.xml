@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/green">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/backToMainButton"
+                android:layout_width="64dp"
+                android:layout_height="61dp"
+                android:layout_weight="1"
+                android:background="@drawable/ic_arrow"
+                app:backgroundTint="@color/brown"/>
+
+            <TextView
+                android:id="@+id/resultsForTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:text="@string/now_displaying_results_for"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/sunriseDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date_label"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/sunriseTimeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sunrise_time"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/sunsetTimeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sunset_time"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/sunriseFLTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/first_light"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/sunriseLLTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/last_light"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/sunriseDawnTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dawn"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/sunriseDuskTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dusk"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/sunriseSNTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/solar_noon"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/sunriseGHTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/golden_hour"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/sunriseDLTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_length"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/sunriseTZTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_zone"
+                android:textSize="15sp" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/addToFavoritesButton"
+                    android:layout_width="171dp"
+                    android:layout_height="46dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button"
+                    android:text="@string/add_to_favorites"
+                    android:textColor="@color/black"
+                    app:backgroundTint="@color/brown"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

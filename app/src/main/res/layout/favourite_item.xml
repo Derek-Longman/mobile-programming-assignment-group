@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This is an example layout for each item in the list of favorites -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/latitude_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/latitude"/>
+
+    <TextView
+        android:id="@+id/longitude_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/longitude"/>
+
+    <TextView
+        android:id="@+id/sunriseTZTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/timezone"/>
+
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_trashcan" />
+</LinearLayout>
+
+

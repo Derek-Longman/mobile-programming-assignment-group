@@ -1,3 +1,63 @@
 <resources>
-    <string name="app_name">CST2335 Final Project 013 Group 2</string>
+    <string name="app_name">CST2335 Final Project</string>
+    <string name="help">Help</string>
+    <string name="help_title">Sunrise Sunset Lookup:</string>
+    <string name="help_message">
+    To use this app, enter a pair of latitude and longitude and press the Lookup button to see more information.\n
+    Please note that the latitude has a range between -90 to 90, and the longitude has a range between -180 to 180.\n
+    You will have the choice between adding your location to a list of favourites, and going back to the main coordinate lookup.\n
+    If you choose to view your favourite locations, you will be able to re-launch the same coordinate lookup by clicking on the saved location.\n
+    You can also remove the saved location by pressing the \'delete\' button.
+    </string>
+    <string name="ok">OK</string>
+
+    <string name="toolbar_recipe">Recipe Lookup</string>
+    <string name="toolbar_Deezer">Deezer Song Search</string>
+    <string name="toolbar_sunrise">Sunrise Sunset</string>
+
+        <!-- Strings for MainActivity buttons and texts -->
+        <string name="sunrise_sunset">Sunrise &amp; Sunset</string>
+        <string name="sunrise_sunset_created_by">Sunrise &amp; Sunset Lookup - Created by Robbie Stemberger.</string>
+        <string name="recipe_search">Recipe Search</string>
+        <string name="recipe_search_created_by">Recipe Search - Created by Derek Longman.</string>
+        <string name="dictionary">Dictionary</string>
+        <string name="dictionary_created_by">Dictionary API - Created by Peter Noonan.</string>
+        <string name="deezer">Deezer</string>
+        <string name="deezer_created_by">Deezer Song Search API - Created by Bruce Raynard.</string>
+
+        <!-- Strings for buttons in sunrisesunset_main.xml -->
+        <string name="lookup">Coordinate Lookup</string>
+        <string name="view_favorites">View Favourites</string>
+        <string name="sunriseMainPrompt">Please enter your coordinates below!</string>
+
+        <!-- Strings for sunrisesunset_main.xml EditText hints -->
+        <string name="latitude_hint">Latitude</string>
+        <string name="longitude_hint">Longitude</string>
+
+        <!-- Strings for labels in custom item view for RecyclerView -->
+        <string name="latitude">Latitude</string>
+        <string name="longitude">Longitude</string>
+        <string name="timezone">Timezone</string>
+        <string name="delete">Delete</string>
+
+        <!-- Strings for sunrise_detail.xml -->
+        <string name="now_displaying_results_for">Now displaying results for:</string>
+        <string name="date_label">Date</string>
+        <string name="sunrise_time">Sunrise Time</string>
+        <string name="sunset_time">Sunset Time</string>
+        <string name="first_light">First Light:</string>
+        <string name="last_light">Last Light</string>
+        <string name="dawn">Dawn</string>
+        <string name="dusk">Dusk</string>
+        <string name="solar_noon">Solar Noon</string>
+        <string name="golden_hour">Golden Hour</string>
+        <string name="day_length">Day Length</string>
+        <string name="time_zone">Time Zone</string>
+        <string name="add_to_favorites">Add to Favourites?</string>
+        <string name="back_to_lookup">Back to Lookup</string>
+
+        <!-- Strings for menu items -->
+        <string name="menu_help">Help</string>
+        <string name="menu_sunrise">Sunrise</string>
+
 </resources>

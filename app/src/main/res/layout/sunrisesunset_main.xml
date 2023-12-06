@@ -1,45 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="16dp"
+    android:background="@color/green">
 
+    <!-- Toolbar at the top with no padding -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <!-- Centered Prompt TextView with larger font size -->
+    <TextView
+        android:id="@+id/sunriseMainPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/toolbar"
+        android:text="@string/sunriseMainPrompt"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Latitude EditText centered horizontally and vertically -->
     <EditText
         android:id="@+id/latitudeInput"
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:hint="Latitude"/>
+        android:layout_below="@id/sunriseMainPrompt"
+        android:layout_centerHorizontal="true"
+        android:inputType="numberSigned|numberDecimal"
+        android:hint="@string/latitude_hint"
+        android:layout_marginTop="32dp"/>
 
+    <!-- Longitude EditText below Latitude EditText -->
     <EditText
         android:id="@+id/longitudeInput"
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:hint="Longitude"/>
+        android:layout_below="@id/latitudeInput"
+        android:layout_centerHorizontal="true"
+        android:inputType="numberSigned|numberDecimal"
+        android:hint="@string/longitude_hint"
+        android:layout_marginTop="8dp"/>
 
+    <!-- Lookup Button below Longitude EditText -->
     <Button
         android:id="@+id/lookupButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lookup"/>
+        android:layout_below="@id/longitudeInput"
+        android:layout_centerHorizontal="true"
+        android:text="@string/lookup"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/custom_button"
+        app:backgroundTint="@color/brown"
+        android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/resultView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save Location"/>
-
+    <!-- View Favorites Button below Lookup Button -->
     <Button
         android:id="@+id/viewFavoritesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Favorites"/>
+        android:layout_below="@id/lookupButton"
+        android:layout_centerHorizontal="true"
+        android:text="@string/view_favorites"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/black"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRecyclerView"
@@ -47,5 +80,4 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:visibility="gone"/>
-
-</LinearLayout>
+</RelativeLayout>

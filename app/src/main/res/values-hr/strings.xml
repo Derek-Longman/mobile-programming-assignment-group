@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CST2335 Završni Projekt</string>
+    <string name="help">Pomoć</string>
+    <string name="help_title">Traženje Izlaska i Zalaska Sunca:</string>
+    <string name="help_message">Za korištenje ove aplikacije unesite par geografske širine i dužine te pritisnite tipku za traženje kako biste vidjeli više informacija.\nImajte na umu da geografska širina ima raspon od -90 do 90, a geografska dužina od -180 do 180.\nImat ćete mogućnost dodavanja lokacije na popis omiljenih ili povratak na glavno traženje koordinata.\nAko odaberete pregled vaših omiljenih lokacija, moći ćete ponovno pokrenuti isto traženje koordinata klikom na spremljenu lokaciju.\nTakođer možete ukloniti spremljenu lokaciju pritiskom na tipku izbriši.</string>
+    <string name="ok">U redu</string>
+
+    <string name="toolbar_recipe">Traženje Recepata</string>
+    <string name="toolbar_Deezer">Traženje Pjesama na Deezeru</string>
+    <string name="toolbar_sunrise">Izlazak i Zalazak Sunca</string>
+
+    <!-- Stringovi za tipke i tekstove u MainActivity -->
+    <string name="sunrise_sunset">Izlazak &amp; Zalazak Sunca</string>
+    <string name="sunrise_sunset_created_by">Traženje Izlaska &amp; Zalaska Sunca - Kreirao Robbie Stemberger.</string>
+    <string name="recipe_search">Traženje Recepata</string>
+    <string name="recipe_search_created_by">Traženje Recepata - Kreirao Derek Longman.</string>
+    <string name="dictionary">Rječnik</string>
+    <string name="dictionary_created_by">API Rječnika - Kreirao Peter Noonan.</string>
+    <string name="deezer">Deezer</string>
+    <string name="deezer_created_by">Traženje Pjesama na Deezer API - Kreirao Bruce Raynard.</string>
+
+    <!-- Stringovi za tipke u sunrisesunset_main.xml -->
+    <string name="lookup">Traženje Koordinata</string>
+    <string name="view_favorites">Prikaži Favorite</string>
+    <string name="sunriseMainPrompt">Molimo unesite svoje koordinate u nastavku!</string>
+
+    <!-- Stringovi za hintove EditTexta u sunrisesunset_main.xml -->
+    <string name="latitude_hint">Geografska Širina</string>
+    <string name="longitude_hint">Geografska Dužina</string>
+
+    <!-- Stringovi za oznake u prilagođenom pogledu stavke za RecyclerView -->
+    <string name="latitude">Geografska Širina</string>
+    <string name="longitude">Geografska Dužina</string>
+    <string name="timezone">Vremenska Zona</string>
+    <string name="delete">Izbriši</string>
+
+    <!-- Stringovi za sunrise_detail.xml -->
+    <string name="now_displaying_results_for">Sada se prikazuju rezultati za:</string>
+    <string name="date_label">Datum</string>
+    <string name="sunrise_time">Vrijeme Izlaska Sunca</string>
+    <string name="sunset_time">Vrijeme Zalaska Sunca</string>
+    <string name="first_light">Prva Svjetlost:</string>
+    <string name="last_light">Posljednja Svjetlost</string>
+    <string name="dawn">Zora</string>
+    <string name="dusk">Sumrak</string>
+    <string name="solar_noon">Solarni Podne</string>
+    <string name="golden_hour">Zlatni Sat</string>
+    <string name="day_length">Trajanje Dana</string>
+    <string name="time_zone">Vremenska Zona</string>
+    <string name="add_to_favorites">Dodaj u Favorite?</string>
+    <string name="back_to_lookup">Povratak na Traženje</string>
+
+    <!-- Stringovi za stavke izbornika -->
+    <string name="menu_help">Pomoć</string>
+    <string name="menu_sunrise">Izlazak Sunca</string>
+</resources>
